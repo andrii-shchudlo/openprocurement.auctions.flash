@@ -4,7 +4,7 @@ from datetime import timedelta
 
 from openprocurement.api.models import get_now
 from openprocurement.auctions.flash.tests.base import BaseAuctionWebTest, test_auction_data, test_features_auction_data, test_bids, test_lots, test_organization
-
+test
 
 class AuctionAuctionResourceTest(BaseAuctionWebTest):
     #initial_data = auction_data
