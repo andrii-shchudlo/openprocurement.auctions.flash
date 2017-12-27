@@ -2,10 +2,12 @@
 from datetime import timedelta
 
 from openprocurement.api.models import get_now
+
 from openprocurement.auctions.flash.tests.base import test_organization
 
+# AuctionContractResourceTest
 
-# class AuctionContractResourceTest
+
 def create_auction_contract_invalid(self):
     response = self.app.post_json('/auctions/some_id/contracts', {
                                   'data': {'title': 'contract title', 'description': 'contract description', 'awardID': self.award_id}}, status=404)
@@ -324,9 +326,10 @@ def get_auction_contracts(self):
             u'url', u'name': u'auction_id'}
     ])
 
+# Auction2LotContractResourceTest
 
-# class Auction2LotContractResourceTest
-def patch_auction_lots_contract(self):
+
+def patch_auction_2_lot_contract(self):
         response = self.app.post_json('/auctions/{}/contracts'.format(
             self.auction_id), {'data': {'title': 'contract title', 'description': 'contract description', 'awardID': self.award_id}})
         self.assertEqual(response.status, '201 Created')
@@ -352,8 +355,9 @@ def patch_auction_lots_contract(self):
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['errors'][0]["description"], "Can update contract only in active lot status")
 
+# AuctionContractDocumentResourceTest
 
-# class AuctionContractDocumentResourceTest
+
 def auction_contract_document_not_found(self):
     response = self.app.post('/auctions/some_id/contracts/some_id/documents', status=404, upload_files=[
                              ('file', 'name.doc', 'content')])
@@ -632,9 +636,10 @@ def patch_auction_contract_document(self):
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (unsuccessful) auction status")
 
+# Auction2LotContractDocumentResourceTest
 
-# class Auction2LotContractDocumentResourceTest
-def create_auction_lots_contract_document(self):
+
+def create_auction_2_lot_contract_document(self):
         response = self.app.post('/auctions/{}/contracts/{}/documents'.format(
             self.auction_id, self.contract_id), upload_files=[('file', 'name.doc', 'content')])
         self.assertEqual(response.status, '201 Created')
@@ -658,7 +663,7 @@ def create_auction_lots_contract_document(self):
         self.assertEqual(response.json['errors'][0]["description"], "Can add document only in active lot status")
 
 
-def put_auction_lots_contract_document(self):
+def put_auction_2_lot_contract_document(self):
     response = self.app.post('/auctions/{}/contracts/{}/documents'.format(
         self.auction_id, self.contract_id), upload_files=[('file', 'name.doc', 'content')])
     self.assertEqual(response.status, '201 Created')
@@ -698,7 +703,7 @@ def put_auction_lots_contract_document(self):
     self.assertEqual(response.json['errors'][0]["description"], "Can update document only in active lot status")
 
 
-def patch_auction_lots_contract_document(self):
+def patch_auction_2_lot_contract_document(self):
     response = self.app.post('/auctions/{}/contracts/{}/documents'.format(
         self.auction_id, self.contract_id), upload_files=[('file', 'name.doc', 'content')])
     self.assertEqual(response.status, '201 Created')

@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
-import unittest
-
-from openprocurement.auctions.flash.tests.base import BaseAuctionWebTest, test_lots, test_bids
+# AuctionCancellationResourceTest
 
 
-# class AuctionCancellationResourceTest
 def create_auction_cancellation_invalid(self):
     response = self.app.post_json('/auctions/some_id/cancellations', {
                                   'data': {'reason': 'cancellation reason'}}, status=404)
@@ -235,8 +232,9 @@ def get_auction_cancellations(self):
                 u'url', u'name': u'auction_id'}
         ])
 
+# AuctionLotCancellationResourceTest
 
-# class AuctionLotCancellationResourceTest
+
 def create_auction_lot_cancellation(self):
     lot_id = self.initial_lots[0]['id']
     response = self.app.post_json('/auctions/{}/cancellations'.format(self.auction_id), {'data': {
@@ -317,9 +315,10 @@ def patch_auction_lot_cancellation(self):
     self.assertEqual(response.json['data']["status"], "active")
     self.assertEqual(response.json['data']["reason"], "cancellation reason")
 
+# AuctionLotsCancellationResourceTest
 
-# class AuctionLotsCancellationResourceTest
-def create_auction_lots_cancellation(self):
+
+def create_auction_2_lot_cancellation(self):
     lot_id = self.initial_lots[0]['id']
     response = self.app.post_json('/auctions/{}/cancellations'.format(self.auction_id), {'data': {
         'reason': 'cancellation reason',
@@ -370,7 +369,7 @@ def create_auction_lots_cancellation(self):
     self.assertEqual(response.json['errors'][0]["description"], "Can add cancellation only in active lot status")
 
 
-def patch_auction_lots_cancellation(self):
+def patch_auction_2_lot_cancellation(self):
     lot_id = self.initial_lots[0]['id']
     response = self.app.post_json('/auctions/{}/cancellations'.format(self.auction_id), {'data': {
         'reason': 'cancellation reason',
@@ -403,8 +402,9 @@ def patch_auction_lots_cancellation(self):
     self.assertEqual(response.json['data']["status"], "active")
     self.assertEqual(response.json['data']["reason"], "cancellation reason")
 
+# AuctionCancellationDocumentResourceTest
 
-# class AuctionCancellationDocumentResourceTest
+
 def auction_cancellation_document_not_found(self):
     response = self.app.post('/auctions/some_id/cancellations/some_id/documents', status=404, upload_files=[
                              ('file', 'name.doc', 'content')])

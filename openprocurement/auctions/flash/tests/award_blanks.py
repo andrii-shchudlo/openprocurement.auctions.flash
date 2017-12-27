@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-
 from openprocurement.auctions.flash.tests.base import test_organization
 
+# AuctionAwardResourceTest
 
-# class AuctionAwardResourceTest
+
 def create_auction_award_invalid(self):
     request_path = '/auctions/{}/awards'.format(self.auction_id)
     response = self.app.post(request_path, 'data', status=415)
@@ -360,8 +360,9 @@ def patch_auction_award_Administrator_change(self):
     self.assertIn("endDate", response.json['data']['complaintPeriod'])
     self.assertEqual(response.json['data']['complaintPeriod']["endDate"], complaintPeriod)
 
+# AuctionLotAwardResourceTest
 
-# class AuctionLotAwardResourceTest
+
 def create_auction_lot_award(self):
     request_path = '/auctions/{}/awards'.format(self.auction_id)
     response = self.app.post_json(request_path, {'data': {'suppliers': [test_organization], 'status': 'pending', 'bid_id': self.initial_bids[0]['id']}}, status=422)
@@ -544,9 +545,10 @@ def patch_auction_award_lot_unsuccessful(self):
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(len(response.json['data']), 4)
 
+# Auction2LotAwardResourceTest
 
-# class Auction2LotAwardResourceTest
-def create_auction_multiple_lot_award(self):
+
+def create_auction_2_lot_award(self):
     request_path = '/auctions/{}/awards'.format(self.auction_id)
     response = self.app.post_json('/auctions/{}/cancellations'.format(self.auction_id), {'data': {
         'reason': 'cancellation reason',
@@ -602,7 +604,7 @@ def create_auction_multiple_lot_award(self):
     self.assertIn('Location', response.headers)
 
 
-def patch_auction_multiple_award(self):
+def patch_auction_2_award(self):
     request_path = '/auctions/{}/awards'.format(self.auction_id)
     response = self.app.post_json(request_path, {'data': {'suppliers': [test_organization], 'status': u'pending', 'bid_id': self.initial_bids[0]['id'], 'lotID': self.initial_lots[0]['id'], "value": {"amount": 500}}})
     self.assertEqual(response.status, '201 Created')
@@ -631,8 +633,9 @@ def patch_auction_multiple_award(self):
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['errors'][0]["description"], "Can update award only in active lot status")
 
+# AuctionAwardComplaintResourceTest
 
-# class AuctionAwardComplaintResourceTest
+
 def create_auction_award_complaint_invalid(self):
     response = self.app.post_json('/auctions/some_id/awards/some_id/complaints', {
                                   'data': {'title': 'complaint title', 'description': 'complaint description', 'author': test_organization}}, status=404)
@@ -1023,8 +1026,9 @@ def get_auction_award_complaints(self):
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['errors'][0]["description"], "Can add complaint only in complaintPeriod")
 
+# AuctionLotAwardComplaintResourceTest
 
-# class AuctionLotAwardComplaintResourceTest
+
 def create_auction_lot_award_complaint(self):
     response = self.app.post_json('/auctions/{}/awards/{}/complaints'.format(
         self.auction_id, self.award_id), {'data': {'title': 'complaint title', 'description': 'complaint description', 'author': test_organization, 'status': 'claim'}})
@@ -1227,9 +1231,10 @@ def get_auction_lot_award_complaints(self):
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['errors'][0]["description"], "Can add complaint only in complaintPeriod")
 
+# Auction2LotAwardComplaintResourceTest
 
-# class Auction2LotAwardComplaintResourceTest
-def create_auction_2lot_award_complaint(self):
+
+def create_auction_2_lot_award_complaint(self):
     response = self.app.post_json('/auctions/{}/awards/{}/complaints'.format(
         self.auction_id, self.award_id), {
         'data': {'title': 'complaint title', 'description': 'complaint description',
@@ -1279,7 +1284,7 @@ def create_auction_2lot_award_complaint(self):
     self.assertEqual(response.json['errors'][0]["description"], "Can add complaint only in active lot status")
 
 
-def patch_auction_2lot_award_complaint(self):
+def patch_auction_2_lot_award_complaint(self):
     response = self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.award_id),
                                    {"data": {"status": "unsuccessful"}})
     self.assertEqual(response.status, '200 OK')
@@ -1347,8 +1352,9 @@ def patch_auction_2lot_award_complaint(self):
     self.assertEqual(response.json['errors'][0]["description"],
                      "Can update complaint only in active lot status")
 
+# AuctionAwardComplaintDocumentResourceTest
 
-# class AuctionAwardComplaintDocumentResourceTest
+
 def not_found_award_complaint_documen(self):
     response = self.app.post('/auctions/some_id/awards/some_id/complaints/some_id/documents', status=404, upload_files=[
                              ('file', 'name.doc', 'content')])
@@ -1663,9 +1669,10 @@ def patch_auction_award_complaint_document(self):
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (complete) auction status")
 
+# Auction2LotAwardComplaintDocumentResourceTest
 
-# class Auction2LotAwardComplaintDocumentResourceTest
-def create_auction_award_2lot_complaint_document(self):
+
+def create_auction_award_2_lot_complaint_document(self):
     response = self.app.post('/auctions/{}/awards/{}/complaints/{}/documents'.format(
         self.auction_id, self.award_id, self.complaint_id), upload_files=[('file', 'name.doc', 'content')], status=403)
     self.assertEqual(response.status, '403 Forbidden')
@@ -1731,7 +1738,7 @@ def create_auction_award_2lot_complaint_document(self):
     self.assertEqual(response.json['errors'][0]["description"], "Can add document only in active lot status")
 
 
-def put_auction_award_2lot_complaint_document(self):
+def put_auction_award_2_lot_complaint_document(self):
     response = self.app.post('/auctions/{}/awards/{}/complaints/{}/documents?acc_token={}'.format(
         self.auction_id, self.award_id, self.complaint_id, self.complaint_owner_token), upload_files=[('file', 'name.doc', 'content')])
     self.assertEqual(response.status, '201 Created')
@@ -1817,7 +1824,7 @@ def put_auction_award_2lot_complaint_document(self):
     self.assertEqual(response.json['errors'][0]["description"], "Can update document only in active lot status")
 
 
-def patch_auction_award_2lot_complaint_document(self):
+def patch_auction_award_2_lot_complaint_document(self):
         response = self.app.post('/auctions/{}/awards/{}/complaints/{}/documents?acc_token={}'.format(
             self.auction_id, self.award_id, self.complaint_id, self.complaint_owner_token), upload_files=[('file', 'name.doc', 'content')])
         self.assertEqual(response.status, '201 Created')
@@ -1866,8 +1873,9 @@ def patch_auction_award_2lot_complaint_document(self):
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['errors'][0]["description"], "Can update document only in active lot status")
 
+# AuctionAwardDocumentResourceTest
 
-# class AuctionAwardDocumentResourceTest
+
 def not_found_award_document_resource(self):
     response = self.app.post('/auctions/some_id/awards/some_id/documents', status=404, upload_files=[
                              ('file', 'name.doc', 'content')])
@@ -2117,9 +2125,10 @@ def patch_auction_award_document(self):
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (complete) auction status")
 
+# Auction2LotAwardDocumentResourceTest
 
-# class Auction2LotAwardDocumentResourceTest
-def create_auction_2lot_award_document(self):
+
+def create_auction_2_lot_award_document(self):
     response = self.app.post('/auctions/{}/awards/{}/documents'.format(
         self.auction_id, self.award_id), upload_files=[('file', 'name.doc', 'content')])
     self.assertEqual(response.status, '201 Created')
@@ -2179,7 +2188,7 @@ def create_auction_2lot_award_document(self):
     self.assertEqual(response.json['errors'][0]["description"], "Can add document only in active lot status")
 
 
-def put_auction_2lot_award_document(self):
+def put_auction_2_lot_award_document(self):
     response = self.app.post('/auctions/{}/awards/{}/documents'.format(
         self.auction_id, self.award_id), upload_files=[('file', 'name.doc', 'content')])
     self.assertEqual(response.status, '201 Created')
@@ -2248,7 +2257,7 @@ def put_auction_2lot_award_document(self):
     self.assertEqual(response.json['errors'][0]["description"], "Can update document only in active lot status")
 
 
-def patch_auction_2lot_award_document(self):
+def patch_auction_2_lot_award_document(self):
     response = self.app.post('/auctions/{}/awards/{}/documents'.format(
         self.auction_id, self.award_id), upload_files=[('file', 'name.doc', 'content')])
     self.assertEqual(response.status, '201 Created')

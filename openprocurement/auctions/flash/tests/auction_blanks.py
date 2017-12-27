@@ -2,8 +2,9 @@
 from datetime import timedelta
 from openprocurement.api.models import get_now
 
+# AuctionAuctionResourceTest
 
-# class AuctionAuctionResourceTest
+
 def get_auction_auction_not_found(self):
     response = self.app.get('/auctions/some_id/auction', status=404)
     self.assertEqual(response.status, '404 Not Found')
@@ -271,8 +272,9 @@ def post_auction_auction_document(self):
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['errors'][0]["description"], "Can't add document in current (complete) auction status")
 
+# AuctionSameValueAuctionResourceTest
 
-# class AuctionSameValueAuctionResourceTest
+
 def post_auction_auction_not_changed(self):
     self.app.authorization = ('Basic', ('auction', ''))
     response = self.app.post_json('/auctions/{}/auction'.format(self.auction_id), {'data': {'bids': self.initial_bids}})
@@ -308,10 +310,10 @@ def post_auction_auction_reversed(self):
     self.assertEqual(auction["awards"][0]['value']['amount'], self.initial_bids[2]['value']['amount'])
     self.assertEqual(auction["awards"][0]['suppliers'], self.initial_bids[2]['tenderers'])
 
+# AuctionLotAuctionResourceTest
 
-# class AuctionLotAuctionResourceTest
 
-def get_auction_auction_lots(self):
+def get_auction_auction_lot(self):
     response = self.app.get('/auctions/{}/auction'.format(self.auction_id), status=403)
     self.assertEqual(response.status, '403 Forbidden')
     self.assertEqual(response.content_type, 'application/json')
@@ -338,7 +340,7 @@ def get_auction_auction_lots(self):
     self.assertEqual(response.json['errors'][0]["description"], "Can't get auction info in current (active.qualification) auction status")
 
 
-def post_auction_auction_lots(self):
+def post_auction_auction_lot(self):
     self.app.authorization = ('Basic', ('auction', ''))
     response = self.app.post_json('/auctions/{}/auction'.format(self.auction_id), {'data': {}}, status=403)
     self.assertEqual(response.status, '403 Forbidden')
@@ -428,7 +430,7 @@ def post_auction_auction_lots(self):
     self.assertEqual(response.json['errors'][0]["description"], "Can't report auction results in current (active.qualification) auction status")
 
 
-def patch_auction_auction_lots(self):
+def patch_auction_auction_lot(self):
     self.app.authorization = ('Basic', ('auction', ''))
     response = self.app.patch_json('/auctions/{}/auction'.format(self.auction_id), {'data': {}}, status=403)
     self.assertEqual(response.status, '403 Forbidden')
@@ -537,7 +539,7 @@ def patch_auction_auction_lots(self):
     self.assertEqual(response.json['errors'][0]["description"], "Can't update auction urls in current (complete) auction status")
 
 
-def post_auction_auction_document_lots(self):
+def post_auction_auction_document_lot(self):
     self.app.authorization = ('Basic', ('auction', ''))
     response = self.app.post('/auctions/{}/documents'.format(self.auction_id), upload_files=[('file', 'name.doc', 'content')], status=403)
     self.assertEqual(response.status, '403 Forbidden')
@@ -604,10 +606,10 @@ def post_auction_auction_document_lots(self):
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['errors'][0]["description"], "Can't add document in current (complete) auction status")
 
+# AuctionMultipleLotAuctionResourceTest
 
-# class AuctionMultipleLotAuctionResourceTest
 
-def get_auction_auction_multiple_lot(self):
+def get_auction_auction_2_lot(self):
     response = self.app.get('/auctions/{}/auction'.format(self.auction_id), status=403)
     self.assertEqual(response.status, '403 Forbidden')
     self.assertEqual(response.content_type, 'application/json')
@@ -638,7 +640,7 @@ def get_auction_auction_multiple_lot(self):
     self.assertEqual(response.json['errors'][0]["description"], "Can't get auction info in current (active.qualification) auction status")
 
 
-def post_auction_auction_multiple_lot(self):
+def post_auction_auction_2_lot(self):
     self.app.authorization = ('Basic', ('auction', ''))
     response = self.app.post_json('/auctions/{}/auction'.format(self.auction_id), {'data': {}}, status=403)
     self.assertEqual(response.status, '403 Forbidden')
@@ -745,7 +747,7 @@ def post_auction_auction_multiple_lot(self):
     self.assertEqual(response.json['errors'][0]["description"], "Can't report auction results in current (active.qualification) auction status")
 
 
-def patch_auction_auction_multiple_lot(self):
+def patch_auction_auction_2_lot(self):
     self.app.authorization = ('Basic', ('auction', ''))
     response = self.app.patch_json('/auctions/{}/auction'.format(self.auction_id), {'data': {}}, status=403)
     self.assertEqual(response.status, '403 Forbidden')
@@ -894,7 +896,7 @@ def patch_auction_auction_multiple_lot(self):
     self.assertEqual(response.json['errors'][0]["description"], "Can update auction urls only in active lot status")
 
 
-def post_auction_auction_document_multiple_lot(self):
+def post_auction_auction_document_2_lot(self):
     self.app.authorization = ('Basic', ('auction', ''))
     response = self.app.post('/auctions/{}/documents'.format(self.auction_id), upload_files=[('file', 'name.doc', 'content')], status=403)
     self.assertEqual(response.status, '403 Forbidden')
@@ -964,7 +966,7 @@ def post_auction_auction_document_multiple_lot(self):
     self.assertEqual(response.json['errors'][0]["description"], "Can't add document in current (complete) auction status")
 
 
-# class AuctionFeaturesAuctionResourceTest
+# AuctionFeaturesAuctionResourceTest
 
 
 def get_auction_features_auction(self):

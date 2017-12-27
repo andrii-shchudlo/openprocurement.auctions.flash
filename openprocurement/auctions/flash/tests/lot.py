@@ -2,11 +2,12 @@
 import unittest
 
 from openprocurement.auctions.core.tests.base import snitch
+
 from openprocurement.auctions.flash.tests.base import (
-    BaseWebTest, BaseAuctionWebTest, test_auction_data, test_lots, test_organization
+    BaseWebTest, BaseAuctionWebTest, test_lots
 )
 from openprocurement.auctions.flash.tests.lot_blanks import (
-    # class AuctionLotResourceTest
+    # AuctionLotResourceTest
     create_auction_lot_invalid,
     create_auction_lot,
     patch_auction_lot,
@@ -16,16 +17,16 @@ from openprocurement.auctions.flash.tests.lot_blanks import (
     get_auction_lots,
     delete_auction_lot,
     auction_lot_guarantee,
-    # class AuctionLotFeatureResourceTest
+    # AuctionLotFeatureResourceTest
     auction_value,
     auction_features_invalid,
-    # class AuctionLotBidderResourceTest
+    # AuctionLotBidderResourceTest
     create_auction_bidder_invalid,
     patch_auction_bidder,
-    # class AuctionLotFeatureBidderResourceTest
+    # AuctionLotFeatureBidderResourceTest
     create_auction_lot_bidder_invalid,
     create_auction_bidder,
-    # class AuctionLotProcessTest
+    # AuctionLotProcessTest
     auction_1lot_0bid,
     auction_1lot_1bid,
     auction_1lot_2bid,

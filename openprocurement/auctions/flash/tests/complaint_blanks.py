@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from openprocurement.auctions.flash.tests.base import test_organization
 
+# AuctionComplaintResourceTest
 
-# class AuctionComplaintResourceTest
+
 def create_auction_complaint_invalid(self):
     response = self.app.post_json('/auctions/some_id/complaints', {
                                   'data': {'title': 'complaint title', 'description': 'complaint description', 'author': test_organization}}, status=404)
@@ -409,8 +410,9 @@ def get_auction_complaints(self):
             u'url', u'name': u'auction_id'}
     ])
 
+# AuctionLotAwardComplaintResourceTest
 
-# class AuctionLotAwardComplaintResourceTest
+
 def create_auction_lot_complaint(self):
         response = self.app.post_json('/auctions/{}/complaints'.format(self.auction_id), {'data': {
             'title': 'complaint title',
@@ -478,8 +480,9 @@ def create_auction_lot_complaint(self):
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['errors'][0]["description"], "Can't add complaint in current (unsuccessful) auction status")
 
+# AuctionComplaintDocumentResourceTest
 
-# class AuctionComplaintDocumentResourceTest
+
 def auction_complaint_document_not_found(self):
     response = self.app.post('/auctions/some_id/complaints/some_id/documents', status=404, upload_files=[
                              ('file', 'name.doc', 'content')])

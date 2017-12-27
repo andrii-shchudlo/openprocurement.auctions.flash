@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
+from openprocurement.auctions.flash.tests.base import test_auction_data
 from openprocurement.auctions.flash.models import Auction
 from openprocurement.auctions.flash.migration import (
     migrate_data, get_db_schema_version, set_db_schema_version, SCHEMA_VERSION
 )
-from openprocurement.auctions.flash.tests.base import test_auction_data
+
+# MigrateTest
 
 
-# class MigrateTest
 def migrate(self):
     self.assertEqual(get_db_schema_version(self.db), SCHEMA_VERSION)
     migrate_data(self.app.app.registry, 1)

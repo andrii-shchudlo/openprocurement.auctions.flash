@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from openprocurement.auctions.flash.tests.base import test_organization
 
+# AuctionQuestionResourceTest
 
-# class AuctionQuestionResourceTest
 def create_auction_question_invalid(self):
     response = self.app.post_json('/auctions/some_id/questions', {
                                   'data': {'title': 'question title', 'description': 'question description', 'author': test_organization}}, status=404)
@@ -269,8 +269,9 @@ def get_auction_questions(self):
                 u'url', u'name': u'auction_id'}
         ])
 
+# AuctionLotQuestionResourceTest
 
-# class AuctionLotQuestionResourceTest
+
 def create_auction_lot_question(self):
     response = self.app.post_json('/auctions/{}/cancellations'.format(self.auction_id), {'data': {
         'reason': 'cancellation reason',

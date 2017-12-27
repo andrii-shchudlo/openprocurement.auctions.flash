@@ -2,27 +2,28 @@
 import unittest
 
 from openprocurement.auctions.core.tests.base import snitch
+
 from openprocurement.auctions.flash.tests.base import (
     BaseAuctionWebTest, test_lots, test_bids, test_organization
 )
 from openprocurement.auctions.flash.tests.chronograph_blanks import (
-    # class AuctionSwitchtenderingResourceTest
+    # AuctionSwitchtenderingResourceTest
     switch_to_tendering_by_enquiryPeriod_endDate,
     switch_to_tendering_by_auctionPeriod_startDate,
     switch_to_tendering_auctionPeriod,
-    # class AuctionSwitchQualificationResourceTest
+    # AuctionSwitchQualificationResourceTest
     switch_to_qualification,
-    # class AuctionSwitchAuctionResourceTest
+    # AuctionSwitchAuctionResourceTest
     switch_to_auction,
-    # class AuctionSwitchUnsuccessfulResourceTest
+    # AuctionSwitchUnsuccessfulResourceTest
     switch_to_unsuccessful,
-    # class AuctionAuctionPeriodResourceTest
+    # AuctionAuctionPeriodResourceTest
     set_auction_period,
     reset_auction_period,
-    # class AuctionComplaintSwitchResourceTest
+    # AuctionComplaintSwitchResourceTest
     switch_to_pending,
     switch_to_complaint,
-    # class AuctionAwardComplaintSwitchResourceTest
+    # AuctionAwardComplaintSwitchResourceTest
     auction_award_complaint_switch_to_pending,
     auction_award_complaint_switch_to_complaint,
 )

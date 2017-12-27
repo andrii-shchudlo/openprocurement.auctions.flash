@@ -3,10 +3,12 @@ from copy import deepcopy
 from datetime import timedelta
 
 from openprocurement.api.models import get_now
+
 from openprocurement.auctions.flash.tests.base import test_auction_data, test_lots, test_organization
 
+# AuctionLotResourceTest
 
-# class AuctionLotResourceTest
+
 def create_auction_lot_invalid(self):
     response = self.app.post_json('/auctions/some_id/lots', {'data': {'title': 'lot title', 'description': 'lot description'}}, status=404)
     self.assertEqual(response.status, '404 Not Found')
@@ -595,8 +597,9 @@ def auction_lot_guarantee(self):
         self.assertEqual(response.json['data']['guarantee']['amount'], 20)
         self.assertEqual(response.json['data']['guarantee']['currency'], "GBP")
 
+# AuctionLotFeatureResourceTest
 
-# class AuctionLotFeatureResourceTest
+
 def auction_value(self):
     request_path = '/auctions/{}'.format(self.auction_id)
     response = self.app.get(request_path)
@@ -653,8 +656,9 @@ def auction_features_invalid(self):
         response = self.app.patch_json(request_path, {'data': data})
         self.assertEqual(response.status, '200 OK')
 
+# AuctionLotBidderResourceTest
 
-# class AuctionLotBidderResourceTest
+
 def create_auction_bidder_invalid(self):
     request_path = '/auctions/{}/bids'.format(self.auction_id)
     response = self.app.post_json(request_path, {'data': {'tenderers': [test_organization]}}, status=422)
@@ -760,8 +764,9 @@ def patch_auction_bidder(self):
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['errors'][0]["description"], "Can't update bid in current (complete) auction status")
 
+# AuctionLotFeatureBidderResourceTest
 
-# class AuctionLotFeatureBidderResourceTest
+
 def create_auction_lot_bidder_invalid(self):
     request_path = '/auctions/{}/bids'.format(self.auction_id)
     response = self.app.post_json(request_path, {'data': {'tenderers': [test_organization]}}, status=422)
@@ -883,8 +888,9 @@ def create_auction_bidder(self):
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['errors'][0]["description"], "Can't add bid in current (complete) auction status")
 
+# AuctionLotProcessTest
 
-# class AuctionLotProcessTest
+
 def auction_1lot_0bid(self):
     self.app.authorization = ('Basic', ('broker', ''))
     # create auction

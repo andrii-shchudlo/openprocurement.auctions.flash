@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-import unittest
 from email.header import Header
-from openprocurement.auctions.flash.tests.base import BaseAuctionWebTest
+
+# AuctionDocumentResourceTest
 
 
-# class AuctionDocumentResourceTest
 def auction_document_not_found(self):
     response = self.app.get('/auctions/some_id/documents', status=404)
     self.assertEqual(response.status, '404 Not Found')
@@ -390,8 +389,9 @@ def patch_auction_document(self):
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (active.tendering) auction status")
 
+# AuctionDocumentWithDSResourceTest
 
-# class AuctionDocumentWithDSResourceTest
+
 def create_auction_document_json_invalid(self):
     response = self.app.post_json('/auctions/{}/documents'.format(self.auction_id),
         {'data': {

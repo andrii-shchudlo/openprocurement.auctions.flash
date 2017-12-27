@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 import unittest
 
+from openprocurement.auctions.core.tests.base import snitch
+
 from openprocurement.auctions.flash.tests.base import (
     BaseAuctionWebTest, test_features_auction_data,
     test_bids, test_lots, test_organization
 )
-from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.flash.tests.auction_blanks import (
     # AuctionAuctionResourceTest
     get_auction_auction_not_found,
@@ -17,15 +18,15 @@ from openprocurement.auctions.flash.tests.auction_blanks import (
     post_auction_auction_not_changed,
     post_auction_auction_reversed,
     # AuctionLotAuctionResourceTest
-    get_auction_auction_lots,
-    post_auction_auction_lots,
-    patch_auction_auction_lots,
-    post_auction_auction_document_lots,
+    get_auction_auction_lot,
+    post_auction_auction_lot,
+    patch_auction_auction_lot,
+    post_auction_auction_document_lot,
     # AuctionMultipleLotAuctionResourceTest
-    get_auction_auction_multiple_lot,
-    post_auction_auction_multiple_lot,
-    patch_auction_auction_multiple_lot,
-    post_auction_auction_document_multiple_lot,
+    get_auction_auction_2_lot,
+    post_auction_auction_2_lot,
+    patch_auction_auction_2_lot,
+    post_auction_auction_document_2_lot,
     # AuctionFeaturesAuctionResourceTest
     get_auction_features_auction,
 )
@@ -65,10 +66,10 @@ class AuctionLotAuctionResourceTest(BaseAuctionWebTest):
     initial_bids = test_bids
     initial_lots = test_lots
     test_get_auction_auction_not_found = snitch(get_auction_auction_not_found)
-    test_get_auction_auction_lots = snitch(get_auction_auction_lots)
-    test_post_auction_auction_lots = snitch(post_auction_auction_lots)
-    test_patch_auction_auction_lots = snitch(patch_auction_auction_lots)
-    test_post_auction_auction_document_lots = snitch(post_auction_auction_document_lots)
+    test_get_auction_auction_lots = snitch(get_auction_auction_lot)
+    test_post_auction_auction_lots = snitch(post_auction_auction_lot)
+    test_patch_auction_auction_lots = snitch(patch_auction_auction_lot)
+    test_post_auction_auction_document_lots = snitch(post_auction_auction_document_lot)
 
 
 class AuctionMultipleLotAuctionResourceTest(BaseAuctionWebTest):
@@ -76,10 +77,10 @@ class AuctionMultipleLotAuctionResourceTest(BaseAuctionWebTest):
     initial_bids = test_bids
     initial_lots = 2 * test_lots
     test_post_auction_auction_document = snitch(get_auction_auction_not_found)
-    test_get_auction_auction_multiple_lot = snitch(get_auction_auction_multiple_lot)
-    test_post_auction_auction_multiple_lot = snitch(post_auction_auction_multiple_lot)
-    test_patch_auction_auction_multiple_lot = snitch(patch_auction_auction_multiple_lot)
-    test_post_auction_auction_document_multiple_lot = snitch(post_auction_auction_document_multiple_lot)
+    test_get_auction_auction_multiple_lot = snitch(get_auction_auction_2_lot)
+    test_post_auction_auction_multiple_lot = snitch(post_auction_auction_2_lot)
+    test_patch_auction_auction_multiple_lot = snitch(patch_auction_auction_2_lot)
+    test_post_auction_auction_document_multiple_lot = snitch(post_auction_auction_document_2_lot)
 
 
 class AuctionFeaturesAuctionResourceTest(BaseAuctionWebTest):

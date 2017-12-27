@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 import unittest
 
+from openprocurement.auctions.core.tests.base import snitch
+
 from openprocurement.auctions.flash.tests.base import (
     BaseAuctionWebTest, test_features_auction_data, test_organization
 )
-
-from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.flash.tests.bidder_blanks import (
-    # class AuctionBidderResourceTest
+    # AuctionBidderResourceTest
     create_auction_bidder_invalid,
     create_auction_bidder,
     patch_auction_bidder,
@@ -15,16 +15,16 @@ from openprocurement.auctions.flash.tests.bidder_blanks import (
     delete_auction_bidder,
     get_auction_auctioners,
     bid_Administrator_change,
-    # class AuctionBidderFeaturesResourceTest
+    # AuctionBidderFeaturesResourceTest
     features_bidder,
     features_bidder_invalid,
-    # class AuctionBidderDocumentResourceTest
+    # AuctionBidderDocumentResourceTest
     auction_bidder_document_not_found,
     create_auction_bidder_document,
     put_auction_bidder_document,
     patch_auction_bidder_document,
     create_auction_bidder_document_nopending,
-    # class AuctionBidderDocumentWithDSResourceTest
+    # AuctionBidderDocumentWithDSResourceTest
     create_auction_bidder_document_json,
     put_auction_bidder_document_json
 )

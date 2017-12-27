@@ -7,24 +7,24 @@ from openprocurement.auctions.flash.tests.base import (
     BaseAuctionWebTest, test_auction_data, test_bids, test_lots, test_organization
 )
 from openprocurement.auctions.flash.tests.contract_blanks import (
-    # class AuctionContractResourceTest
+    # AuctionContractResourceTest
     create_auction_contract_invalid,
     create_auction_contract,
     create_auction_contract_in_complete_status,
     patch_auction_contract,
     get_auction_contract,
     get_auction_contracts,
-    # class Auction2LotContractResourceTest
-    patch_auction_lots_contract,
-    # class AuctionContractDocumentResourceTest
+    # Auction2LotContractResourceTest
+    patch_auction_2_lot_contract,
+    # AuctionContractDocumentResourceTest
     auction_contract_document_not_found,
     create_auction_contract_document,
     put_auction_contract_document,
     patch_auction_contract_document,
-    # class Auction2LotContractDocumentResourceTest
-    create_auction_lots_contract_document,
-    put_auction_lots_contract_document,
-    patch_auction_lots_contract_document
+    # Auction2LotContractDocumentResourceTest
+    create_auction_2_lot_contract_document,
+    put_auction_2_lot_contract_document,
+    patch_auction_2_lot_contract_document
 )
 
 
@@ -68,7 +68,7 @@ class Auction2LotContractResourceTest(BaseAuctionWebTest):
         award = response.json['data']
         self.award_id = award['id']
         self.app.patch_json('/auctions/{}/awards/{}'.format(self.auction_id, self.award_id), {"data": {"status": "active"}})
-    test_patch_auction_lots_contract = snitch(patch_auction_lots_contract)
+    test_patch_auction_lots_contract = snitch(patch_auction_2_lot_contract)
 
 
 class AuctionContractDocumentResourceTest(BaseAuctionWebTest):
@@ -117,9 +117,9 @@ class Auction2LotContractDocumentResourceTest(BaseAuctionWebTest):
         response = self.app.post_json('/auctions/{}/contracts'.format(self.auction_id), {'data': {'title': 'contract title', 'description': 'contract description', 'awardID': self.award_id}})
         contract = response.json['data']
         self.contract_id = contract['id']
-    test_create_auction_lots_contract_document = snitch(create_auction_lots_contract_document)
-    test_put_auction_lots_contract_document = snitch(put_auction_lots_contract_document)
-    test_patch_auction_lots_contract_document = snitch(patch_auction_lots_contract_document)
+    test_create_auction_lots_contract_document = snitch(create_auction_2_lot_contract_document)
+    test_put_auction_lots_contract_document = snitch(put_auction_2_lot_contract_document)
+    test_patch_auction_lots_contract_document = snitch(patch_auction_2_lot_contract_document)
 
 
 def suite():

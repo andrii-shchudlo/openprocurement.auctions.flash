@@ -4,11 +4,11 @@ from openprocurement.auctions.core.tests.base import snitch
 
 from openprocurement.auctions.flash.tests.base import BaseWebTest, BaseAuctionWebTest
 from openprocurement.auctions.flash.tests.tender_blanks import (
-    # class AuctionTest
+    # AuctionTest
     simple_add_auction,
     create_role,
     edit_role,
-    # class AuctionResourceTest
+    # AuctionResourceTest
     auction_Administrator_change,
     guarantee, auction_not_found,
     dateModified_auction,
@@ -24,7 +24,7 @@ from openprocurement.auctions.flash.tests.tender_blanks import (
     listing_draft, listing_changes,
     listing,
     empty_listing,
-    # class AuctionProcessTest
+    # AuctionProcessTest
     invalid_auction_conditions,
     one_valid_bid_auction,
     one_invalid_bid_auction,

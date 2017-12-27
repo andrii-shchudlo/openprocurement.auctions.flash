@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from openprocurement.auctions.flash.tests.base import BaseAuctionWebTest, test_lots
 from openprocurement.auctions.core.tests.base import snitch
+
+from openprocurement.auctions.flash.tests.base import BaseAuctionWebTest, test_lots
 from openprocurement.auctions.flash.tests.question_blanks import (
-    # class AuctionQuestionResourceTest
+    # AuctionQuestionResourceTest
     create_auction_question_invalid,
     create_auction_question,
     patch_auction_question,
     get_auction_question,
     get_auction_questions,
-    # class AuctionLotQuestionResourceTest
+    # AuctionLotQuestionResourceTest
     create_auction_lot_question,
     patch_auction_lot_question
 )

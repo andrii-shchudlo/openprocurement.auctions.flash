@@ -6,11 +6,13 @@ from uuid import uuid4
 
 from openprocurement.api.utils import ROUTE_PREFIX
 from openprocurement.api.models import get_now, SANDBOX_MODE
+
 from openprocurement.auctions.flash.models import Auction
 from openprocurement.auctions.flash.tests.base import test_auction_data, test_organization, BaseWebTest, BaseAuctionWebTest
 
+# AuctionTest
 
-# class AuctionTest
+
 def simple_add_auction(self):
 
     u = Auction(test_auction_data)
@@ -63,8 +65,8 @@ def edit_role(self):
         fields.add('procurementMethodDetails')
     self.assertEqual(set(Auction._fields) - Auction._options.roles['edit_active.enquiries'].fields, fields)
 
+# AuctionResourceTest
 
-# class AuctionResourceTest
 
 def empty_listing(self):
     response = self.app.get('/auctions')
@@ -1170,8 +1172,9 @@ def auction_Administrator_change(self):
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['data']['mode'], u'test')
 
+# AuctionProcessTest
 
-# class AuctionProcessTest
+
 def invalid_auction_conditions(self):
     self.app.authorization = ('Basic', ('broker', ''))
     # empty auctions listing

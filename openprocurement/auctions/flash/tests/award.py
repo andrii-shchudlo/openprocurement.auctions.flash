@@ -6,7 +6,6 @@ from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.flash.tests.base import (
     BaseAuctionWebTest, test_bids, test_lots, test_organization
 )
-
 from openprocurement.auctions.flash.tests.award_blanks import (
     # AuctionAwardResourceTest
     create_auction_award_invalid,
@@ -15,45 +14,45 @@ from openprocurement.auctions.flash.tests.award_blanks import (
     patch_auction_award_unsuccessful,
     get_auction_award,
     patch_auction_award_Administrator_change,
-    # class AuctionLotAwardResourceTest
+    # AuctionLotAwardResourceTest
     create_auction_lot_award,
     patch_auction_lot_award,
     patch_auction_award_lot_unsuccessful,
-    # class Auction2LotAwardResourceTest
-    create_auction_multiple_lot_award,
-    patch_auction_multiple_award,
-    # class AuctionAwardComplaintResourceTest
+    # Auction2LotAwardResourceTest
+    create_auction_2_lot_award,
+    patch_auction_2_award,
+    # AuctionAwardComplaintResourceTest
     create_auction_award_complaint_invalid,
     create_auction_award_complaint,
     patch_auction_award_complaint,
     review_auction_award_complaint,
     get_auction_award_complaint,
     get_auction_award_complaints,
-    # class AuctionLotAwardComplaintResourceTest
+    # AuctionLotAwardComplaintResourceTest
     create_auction_lot_award_complaint,
     patch_auction_lot_award_complaint,
     get_auction_lot_award_complaint,
     get_auction_lot_award_complaints,
-    # class Auction2LotAwardComplaintResourceTest
-    create_auction_2lot_award_complaint,
-    patch_auction_2lot_award_complaint,
-    # class AuctionAwardComplaintDocumentResourceTest
+    # Auction2LotAwardComplaintResourceTest
+    create_auction_2_lot_award_complaint,
+    patch_auction_2_lot_award_complaint,
+    # AuctionAwardComplaintDocumentResourceTest
     not_found_award_complaint_documen,
     create_auction_award_complaint_document,
     put_auction_award_complaint_document,
     patch_auction_award_complaint_document,
-    # class Auction2LotAwardComplaintDocumentResourceTest
-    create_auction_award_2lot_complaint_document,
-    put_auction_award_2lot_complaint_document,
-    patch_auction_award_2lot_complaint_document,
-    # class AuctionAwardDocumentResourceTest
+    # Auction2LotAwardComplaintDocumentResourceTest
+    create_auction_award_2_lot_complaint_document,
+    put_auction_award_2_lot_complaint_document,
+    patch_auction_award_2_lot_complaint_document,
+    # AuctionAwardDocumentResourceTest
     not_found_award_document_resource,
     create_auction_award_document,
     put_auction_award_document,
     patch_auction_award_document,
-    create_auction_2lot_award_document,
-    put_auction_2lot_award_document,
-    patch_auction_2lot_award_document
+    create_auction_2_lot_award_document,
+    put_auction_2_lot_award_document,
+    patch_auction_2_lot_award_document
 )
 
 
@@ -81,8 +80,8 @@ class Auction2LotAwardResourceTest(BaseAuctionWebTest):
     initial_status = 'active.qualification'
     initial_lots = 2 * test_lots
     initial_bids = test_bids
-    test_create_auction_multiple_lot_award = snitch(create_auction_multiple_lot_award)
-    test_patch_auction_multiple_award = snitch(patch_auction_multiple_award)
+    test_create_auction_multiple_lot_award = snitch(create_auction_2_lot_award)
+    test_patch_auction_multiple_award = snitch(patch_auction_2_award)
 
 
 class AuctionAwardComplaintResourceTest(BaseAuctionWebTest):
@@ -139,8 +138,8 @@ class Auction2LotAwardComplaintResourceTest(BaseAuctionWebTest):
         award = response.json['data']
         self.award_id = award['id']
 
-    test_create_auction_2lot_award_complaint = snitch(create_auction_2lot_award_complaint)
-    test_patch_auction_2lot_award_complaint = snitch(patch_auction_2lot_award_complaint)
+    test_create_auction_2lot_award_complaint = snitch(create_auction_2_lot_award_complaint)
+    test_patch_auction_2lot_award_complaint = snitch(patch_auction_2_lot_award_complaint)
     test_get_auction_lot_award_complaint = snitch(get_auction_lot_award_complaint)
     test_get_auction_lot_award_complaints = snitch(get_auction_lot_award_complaints)
 
@@ -187,9 +186,9 @@ class Auction2LotAwardComplaintDocumentResourceTest(BaseAuctionWebTest):
         complaint = response.json['data']
         self.complaint_id = complaint['id']
         self.complaint_owner_token = response.json['access']['token']
-    test_create_auction_award_2lot_complaint_document = snitch(create_auction_award_2lot_complaint_document)
-    test_put_auction_award_2lot_complaint_document = snitch(put_auction_award_2lot_complaint_document)
-    test_patch_auction_award_2lot_complaint_document = snitch(patch_auction_award_2lot_complaint_document)
+    test_create_auction_award_2lot_complaint_document = snitch(create_auction_award_2_lot_complaint_document)
+    test_put_auction_award_2lot_complaint_document = snitch(put_auction_award_2_lot_complaint_document)
+    test_patch_auction_award_2lot_complaint_document = snitch(patch_auction_award_2_lot_complaint_document)
 
 
 class AuctionAwardDocumentResourceTest(BaseAuctionWebTest):
@@ -222,9 +221,9 @@ class Auction2LotAwardDocumentResourceTest(BaseAuctionWebTest):
             self.auction_id), {'data': {'suppliers': [test_organization], 'status': 'pending', 'bid_id': bid['id'], 'lotID': bid['lotValues'][0]['relatedLot']}})
         award = response.json['data']
         self.award_id = award['id']
-    test_create_auction_2lot_award_document = snitch(create_auction_2lot_award_document)
-    test_put_auction_2lot_award_document = snitch(put_auction_2lot_award_document)
-    test_patch_auction_2lot_award_document = snitch(patch_auction_2lot_award_document)
+    test_create_auction_2lot_award_document = snitch(create_auction_2_lot_award_document)
+    test_put_auction_2lot_award_document = snitch(put_auction_2_lot_award_document)
+    test_patch_auction_2lot_award_document = snitch(patch_auction_2_lot_award_document)
 
 
 def suite():

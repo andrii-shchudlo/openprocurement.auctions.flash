@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-import unittest
+from openprocurement.auctions.flash.tests.base import test_organization
 
-from openprocurement.auctions.flash.tests.base import BaseAuctionWebTest, test_auction_data, test_features_auction_data, test_organization
+# AuctionBidderResourceTest
 
 
-# class AuctionBidderResourceTest
 def create_auction_bidder_invalid(self):
     response = self.app.post_json('/auctions/some_id/bids', {
                                   'data': {'tenderers': [test_organization], "value": {"amount": 500}}}, status=404)
@@ -356,8 +355,9 @@ def bid_Administrator_change(self):
     self.assertNotEqual(response.json['data']["value"]["amount"], 400)
     self.assertEqual(response.json['data']["tenderers"][0]["identifier"]["id"], "00000000")
 
+# AuctionBidderFeaturesResourceTest
 
-# class AuctionBidderFeaturesResourceTest
+
 def features_bidder(self):
     test_features_bids = [
         {
@@ -460,8 +460,9 @@ def features_bidder_invalid(self):
             {u'description': [{u'value': [u'value should be one of feature value.']}], u'location': u'body', u'name': u'parameters'}
         ])
 
+# AuctionBidderDocumentResourceTest
 
-# class AuctionBidderDocumentResourceTest
+
 def auction_bidder_document_not_found(self):
     response = self.app.post('/auctions/some_id/bids/some_id/documents', status=404, upload_files=[
                              ('file', 'name.doc', 'content')])
@@ -847,8 +848,9 @@ def create_auction_bidder_document_nopending(self):
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['errors'][0]["description"], "Can't add document because award of bid is not in pending state")
 
+# AuctionBidderDocumentWithDSResourceTest
 
-# class AuctionBidderDocumentWithDSResourceTest
+
 def create_auction_bidder_document_json(self):
     response = self.app.post_json('/auctions/{}/bids/{}/documents'.format(self.auction_id, self.bid_id),
         {'data': {

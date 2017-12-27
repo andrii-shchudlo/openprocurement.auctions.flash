@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import unittest
 
+from openprocurement.auctions.core.tests.base import snitch
+
 from openprocurement.auctions.flash.migration import migrate_data
 from openprocurement.auctions.flash.tests.base import BaseWebTest
-from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.flash.tests.migration_blanks import migrate, migrate_from0to1
 
 

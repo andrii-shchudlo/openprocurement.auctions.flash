@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
-import unittest
-from datetime import datetime, timedelta
+from datetime import timedelta
+
 from openprocurement.api.models import get_now
-from openprocurement.auctions.flash.tests.base import BaseAuctionWebTest, test_lots, test_bids, test_organization
+
+from openprocurement.auctions.flash.tests.base import test_organization
+
+# AuctionSwitchtenderingResourceTest
 
 
-# class AuctionSwitchtenderingResourceTest
 def switch_to_tendering_by_enquiryPeriod_endDate(self):
     self.app.authorization = ('Basic', ('chronograph', ''))
     response = self.app.patch_json('/auctions/{}'.format(self.auction_id), {'data': {'id': self.auction_id}})
@@ -39,8 +41,9 @@ def switch_to_tendering_auctionPeriod(self):
         self.assertEqual(response.json['data']["status"], "active.tendering")
         self.assertIn('auctionPeriod', response.json['data'])
 
+# AuctionSwitchQualificationResourceTest
 
-# class AuctionSwitchQualificationResourceTest
+
 def switch_to_qualification(self):
         response = self.set_status('active.auction', {'status': self.initial_status})
         self.app.authorization = ('Basic', ('chronograph', ''))
@@ -50,8 +53,9 @@ def switch_to_qualification(self):
         self.assertEqual(response.json['data']["status"], "active.qualification")
         self.assertEqual(len(response.json['data']["awards"]), 1)
 
+# AuctionSwitchAuctionResourceTest
 
-# class AuctionSwitchAuctionResourceTest
+
 def switch_to_auction(self):
         response = self.set_status('active.auction', {'status': self.initial_status})
         self.app.authorization = ('Basic', ('chronograph', ''))
@@ -60,8 +64,9 @@ def switch_to_auction(self):
         self.assertEqual(response.content_type, 'application/json')
         self.assertEqual(response.json['data']["status"], "active.auction")
 
+# AuctionSwitchUnsuccessfulResourceTest
 
-# class AuctionSwitchUnsuccessfulResourceTest
+
 def switch_to_unsuccessful(self):
         response = self.set_status('active.auction', {'status': self.initial_status})
         self.app.authorization = ('Basic', ('chronograph', ''))
@@ -72,8 +77,9 @@ def switch_to_unsuccessful(self):
         if self.initial_lots:
             self.assertEqual(set([i['status'] for i in response.json['data']["lots"]]), set(["unsuccessful"]))
 
+# AuctionAuctionPeriodResourceTest
 
-# class AuctionAuctionPeriodResourceTest
+
 def set_auction_period(self):
     self.set_status('active.tendering', {'status': 'active.enquiries'})
     self.app.authorization = ('Basic', ('chronograph', ''))
@@ -222,8 +228,9 @@ def reset_auction_period(self):
     self.assertIn('9999-01-01T00:00:00', item['auctionPeriod']['startDate'])
     self.assertIn('9999-01-01T00:00:00', response.json['data']['next_check'])
 
+# AuctionComplaintSwitchResourceTest
 
-# class AuctionComplaintSwitchResourceTest
+
 def switch_to_pending(self):
     response = self.app.post_json('/auctions/{}/complaints'.format(self.auction_id), {'data': {
         'title': 'complaint title',
@@ -276,8 +283,9 @@ def switch_to_complaint(self):
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.json['data']["complaints"][-1]['status'], status)
 
+# AuctionAwardComplaintSwitchResourceTest
 
-# class AuctionAwardComplaintSwitchResourceTest
+
 def auction_award_complaint_switch_to_pending(self):
         response = self.app.post_json('/auctions/{}/awards/{}/complaints'.format(self.auction_id, self.award_id), {'data': {
             'title': 'complaint title',

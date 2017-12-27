@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from openprocurement.auctions.flash.tests.base import BaseAuctionWebTest
 from openprocurement.auctions.core.tests.base import snitch
+
+from openprocurement.auctions.flash.tests.base import BaseAuctionWebTest
 from openprocurement.auctions.flash.tests.document_blanks import (
-    # class AuctionDocumentResourceTest
+    # AuctionDocumentResourceTest
     auction_document_not_found,
     create_auction_document,
     put_auction_document,
     patch_auction_document,
-    # class AuctionDocumentWithDSResourceTest
+    # AuctionDocumentWithDSResourceTest
     create_auction_document_json_invalid,
     create_auction_document_json,
     put_auction_document_json

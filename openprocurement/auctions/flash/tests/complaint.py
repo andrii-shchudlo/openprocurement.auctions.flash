@@ -1,21 +1,22 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from openprocurement.auctions.flash.tests.base import (
-    BaseAuctionWebTest, test_auction_data, test_lots, test_organization
-)
 from openprocurement.auctions.core.tests.base import snitch
+
+from openprocurement.auctions.flash.tests.base import (
+    BaseAuctionWebTest, test_lots, test_organization
+)
 from openprocurement.auctions.flash.tests.complaint_blanks import (
-    # class AuctionComplaintResourceTest
+    # AuctionComplaintResourceTest
     create_auction_complaint_invalid,
     create_auction_complaint,
     patch_auction_complaint,
     review_auction_complaint,
     get_auction_complaint,
     get_auction_complaints,
-    # class AuctionLotAwardComplaintResourceTest
+    # AuctionLotAwardComplaintResourceTest
     create_auction_lot_complaint,
-    # class AuctionComplaintDocumentResourceTest
+    # AuctionComplaintDocumentResourceTest
     auction_complaint_document_not_found,
     create_auction_complaint_document,
     put_auction_complaint_document,
