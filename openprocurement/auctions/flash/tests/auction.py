@@ -7,7 +7,7 @@ from openprocurement.auctions.flash.tests.base import (
     BaseAuctionWebTest, test_features_auction_data,
     test_bids, test_lots, test_organization
 )
-from openprocurement.auctions.flash.tests.auction_blanks import (
+from openprocurement.auctions.flash.tests.blanks.auction_blanks import (
     # AuctionAuctionResourceTest
     get_auction_auction_not_found,
     get_auction_auction,
