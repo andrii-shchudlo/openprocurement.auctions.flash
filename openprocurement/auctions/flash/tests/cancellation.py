@@ -6,7 +6,7 @@ from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.flash.tests.base import (
     BaseAuctionWebTest, test_lots, test_bids
 )
-from openprocurement.auctions.flash.tests.cancellation_blanks import (
+from openprocurement.auctions.flash.tests.blanks.cancellation_blanks import (
     # AuctionCancellationResourceTest
     create_auction_cancellation_invalid,
     create_auction_cancellation,

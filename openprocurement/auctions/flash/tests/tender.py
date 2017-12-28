@@ -3,7 +3,7 @@ import unittest
 from openprocurement.auctions.core.tests.base import snitch
 
 from openprocurement.auctions.flash.tests.base import BaseWebTest, BaseAuctionWebTest
-from openprocurement.auctions.flash.tests.tender_blanks import (
+from openprocurement.auctions.flash.tests.blanks.tender_blanks import (
     # AuctionTest
     simple_add_auction,
     create_role,

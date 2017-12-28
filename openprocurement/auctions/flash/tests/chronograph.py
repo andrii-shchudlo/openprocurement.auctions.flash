@@ -6,7 +6,7 @@ from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.flash.tests.base import (
     BaseAuctionWebTest, test_lots, test_bids, test_organization
 )
-from openprocurement.auctions.flash.tests.chronograph_blanks import (
+from openprocurement.auctions.flash.tests.blanks.chronograph_blanks import (
     # AuctionSwitchtenderingResourceTest
     switch_to_tendering_by_enquiryPeriod_endDate,
     switch_to_tendering_by_auctionPeriod_startDate,

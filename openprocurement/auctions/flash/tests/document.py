@@ -4,7 +4,7 @@ import unittest
 from openprocurement.auctions.core.tests.base import snitch
 
 from openprocurement.auctions.flash.tests.base import BaseAuctionWebTest
-from openprocurement.auctions.flash.tests.document_blanks import (
+from openprocurement.auctions.flash.tests.blanks.document_blanks import (
     # AuctionDocumentResourceTest
     auction_document_not_found,
     create_auction_document,

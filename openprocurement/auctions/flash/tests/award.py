@@ -6,7 +6,7 @@ from openprocurement.auctions.core.tests.base import snitch
 from openprocurement.auctions.flash.tests.base import (
     BaseAuctionWebTest, test_bids, test_lots, test_organization
 )
-from openprocurement.auctions.flash.tests.award_blanks import (
+from openprocurement.auctions.flash.tests.blanks.award_blanks import (
     # AuctionAwardResourceTest
     create_auction_award_invalid,
     create_auction_award,

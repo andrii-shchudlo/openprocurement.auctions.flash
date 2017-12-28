@@ -4,7 +4,7 @@ import unittest
 from openprocurement.auctions.core.tests.base import snitch
 
 from openprocurement.auctions.flash.tests.base import BaseAuctionWebTest, test_lots
-from openprocurement.auctions.flash.tests.question_blanks import (
+from openprocurement.auctions.flash.tests.blanks.question_blanks import (
     # AuctionQuestionResourceTest
     create_auction_question_invalid,
     create_auction_question,
